@@ -1,7 +1,8 @@
 version: '3'
 services:
   jira:
-    image: cptactionhank/atlassian-jira:7.0.5
+    # image: cptactionhank/atlassian-jira:7.6.0
+    image: cptactionhank/atlassian-jira:latest
     restart: always
     links:
       - database
@@ -9,26 +10,33 @@ services:
       - jira-data:/var/atlassian/jira
 
   confluence:
-    image: cptactionhank/atlassian-confluence:5.9.4
+    # image: cptactionhank/atlassian-confluence:6.7.0
+    image: cptactionhank/atlassian-confluence:latest
     restart: always
     links:
       - database
     volumes:
       - confluence-data:/var/atlassian/confluence
 
-  bitbucket:
-    image: atlassian/bitbucket-server:4.14
-    restart: always
-    links:
-      - database
-    volumes:
-      - bitbucket-data:/var/atlassian/application-data/bitbucket
+  # bitbucket:
+  #   image: atlassian/bitbucket-server:latest
+  #   image: atlassian/bitbucket-server:5.7
+  #   restart: always
+  #   links:
+  #     - database
+  #   volumes:
+  #     - bitbucket-data:/var/atlassian/application-data/bitbucket
 
+  # use mysql instead?
   database:
-    image: postgres:9.4
+    # image: postgres:9.6.6
+    image: postgres:latest
+    # image: mysql:latest
     restart: always
     volumes:
       - database-data:/var/lib/postgresql/data
+      # - database-data:/var/lib/mysql/data
+
   nginx:
     image: nginx
     restart: always
@@ -37,14 +45,15 @@ services:
     links:
       - jira
       - confluence
-      - bitbucket
+      # - bitbucket
     volumes:
     - ./:/src
     command: ./src/scripts/run_nginx.sh
     environment:
     - DOMAIN
+
 volumes:
   jira-data:
   confluence-data:
-  bitbucket-data:
+  # bitbucket-data:
   database-data:

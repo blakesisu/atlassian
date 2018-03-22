@@ -1,5 +1,6 @@
-# atlassian
-It's Atlassian docker compose file, to run Atlassian products with docker on one single machine.
+# Atlas Contellation
+
+It's Atlassian docker compose file, for all the Atlassian goodies, to run Atlassian products with docker on one single machine.
 
 ```
 jira.example.com   wiki.example.com   bitbucket.example.com
@@ -33,12 +34,12 @@ jira.example.com   wiki.example.com   bitbucket.example.com
 
 Atlassian supported products:
 
-- Jira `7.0.5`
-- Confluence `5.9.4`
-- Bitbucket `4.14`
+- Jira `latest`
+- Confluence `latest`
+- Bitbucket `latest`
 
 With:
-- Postgres `9.4`
+- Postgres `latest`
 - Nginx `latest`
 
 Requirements:
